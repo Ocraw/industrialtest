@@ -27,6 +27,9 @@ elseif industrialtest.mclAvailable then
 	definition.sounds=mcl_sounds.node_sound_metal_defaults()
 	definition._mcl_blast_resistance=6
 	definition._mcl_hardness=5
+	definition.groups={
+	  pickaxey=4
+	}
 end
 minetest.register_node("industrialtest:machine_block",definition)
 minetest.register_craft({
@@ -94,12 +97,12 @@ if not industrialtest.mods.mclRubber then
 			building_block=1,
 			material_wood=1,
 			fire_encouragement=5,
-			fire_flammability=5
+			fire_flammability=5,
 		}
 		definition.after_destruct=mcl_core.update_leaves
+		definition.on_destruct=mcl_core.update_leaves
 		definition._mcl_blast_resistance=1.8
 		definition._mcl_hardness=1.8
-		definition._mcl_leaves={"industrialtest:rubber_leaves"}
 	end
 	definition.groups._industrialtest_rubberWood=1
 	minetest.register_node("industrialtest:rubber_wood",definition)
@@ -213,7 +216,7 @@ if not industrialtest.mods.mclRubber then
 			fire_flammability=60,
 			leaves=1,
 			deco_block=1,
-			compostability=30
+			compostability=30,
 		}
 		definition.drop=getDrops(0)
 		definition.after_place_node=mcl_core.make_player_leaves
@@ -222,7 +225,8 @@ if not industrialtest.mods.mclRubber then
 		definition._mcl_hardness=0.2
 		definition._mcl_silk_touch_drop=true
 		definition._mcl_fortune_drop={getDrops(1),getDrops(2),getDrops(3),getDrops(4)}
-		definition._mcl_orphan_leaves={"industrialtest:rubber_leaves_orphan"}
+		definition._mcl_leaves="industrialtest:rubber_leaves"
+		definition._mcl_orphan_leaves="industrialtest:rubber_leaves_orphan"
 	end
 	minetest.register_node("industrialtest:rubber_leaves",definition)
 	if industrialtest.mtgAvailable then
@@ -239,7 +243,6 @@ if not industrialtest.mods.mclRubber then
 		definition.groups.orphan_leaves=1
 		definition._mcl_shears_drop={"industrialtest:rubber_leaves"}
 		definition._mcl_silk_touch_drop={"industrialtest:rubber_leaves"}
-		definition._mcl_orphan_leaves=nil
 		minetest.register_node("industrialtest:rubber_leaves_orphan",definition)
 	end
 	industrialtest.internal.makeRubberTree=function(pos)
