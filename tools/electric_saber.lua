@@ -167,7 +167,7 @@ minetest.register_on_punchplayer(function(player,hitter)
 			industrialtest.api.addPowerToItem(itemstack,-20)
 			hitter:set_wielded_item(itemstack)
 			local def=minetest.registered_tools[itemstack:get_name().."_active"]
-			player:set_hp(player:get_hp()-def.tool_capabilites.damage_groups.fleshy)
+			player:set_hp(player:get_hp()-def.tool_capabilities.damage_groups.fleshy)
 			return true
 		end
 	end
