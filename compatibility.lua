@@ -449,6 +449,8 @@ if industrialtest.mclAvailable then
 	industrialtest.elementKeys.stick="mcl_core:stick"
 	industrialtest.elementKeys.flint="mcl_core:flint"
 	industrialtest.elementKeys.snowball="mcl_throwing:snowball"
+	-- added snowblock > ice compressor recipe
+	industrialtest.elementKeys.snowblock="mcl_core:snowBlock"
 	industrialtest.elementKeys.string="mcl_mobitems:string"
 	industrialtest.elementKeys.junglePlanks="mcl_core:junglewood"
 	industrialtest.elementKeys.wood="mcl_core:tree"
@@ -471,7 +473,10 @@ if industrialtest.mclAvailable then
 	industrialtest.elementKeys.powerCarrier="mesecons:mesecon"
 	industrialtest.elementKeys.furnace="mcl_furnaces:furnace"
 	industrialtest.elementKeys.stone="mcl_core:stone"
-	industrialtest.elementKeys.stoneSlab="mcl_stairs:slab_stone"
+	--FIXME slabs different between vxlbr mcla
+	-- also it's supposed to be a pressure plate, might wait for mcl to
+	-- transition from mesecons.
+	industrialtest.elementKeys.stoneSlab=(industrialtest.game.id == "mineclone2" or industrialtest.game.id == "VoxeLibre") and "mcl_stairs:slab_stone" or "mcl_stairs:slab_stone_rough"
 	industrialtest.elementKeys.cobble="mcl_core:cobble"
 	industrialtest.elementKeys.mossCobble="mcl_core:mossycobble"
 	industrialtest.elementKeys.sand="mcl_core:sand"

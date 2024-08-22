@@ -28,7 +28,7 @@ industrialtest.api.registerMaceratorRecipe({
 	recipe=industrialtest.elementKeys.gravel
 })
 industrialtest.api.registerMaceratorRecipe({
-	output=industrialtest.elementKeys.snowball,
+	output=industrialtest.elementKeys.snowball.." 4",
 	recipe=industrialtest.elementKeys.ice
 })
 industrialtest.api.registerMaceratorRecipe({
@@ -65,7 +65,8 @@ industrialtest.api.registerCompressorRecipe({
 })
 industrialtest.api.registerCompressorRecipe({
 	output=industrialtest.elementKeys.ice,
-	recipe=industrialtest.elementKeys.snowball
+	recipe=industrialtest.elementKeys.snowball,
+	count=4
 })
 if industrialtest.mclAvailable then
 	industrialtest.api.registerCompressorRecipe({
@@ -73,6 +74,10 @@ if industrialtest.mclAvailable then
 		recipe="mcl_nether:netherrack",
 		count=3
 	})
+    industrialtest.api.registerCompressorRecipe({
+    	output=industrialtest.elementKeys.ice,
+    	recipe=industrialtest.elementKeys.snowBlock
+    })
 end
 
 -- Geothermal Generator fuels

@@ -26,6 +26,11 @@ industrialtest.developerMode=true -- Enables additional utils useful when develo
 
 -- Others
 industrialtest.random=PseudoRandom(os.time())
+industrialtest.game=minetest.get_game_info() or nil
+if not industrialtest.game then
+  minetest.log("IndustrialTest: Disabled, Minetest >= 5.7.0 required")
+  return
+end
 
 -- load other lua files
 dofile(modpath.."/compatibility.lua")
