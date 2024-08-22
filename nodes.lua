@@ -57,6 +57,9 @@ elseif industrialtest.mclAvailable then
 	definition.sounds=mcl_sounds.node_sound_metal_defaults()
 	definition._mcl_blast_resistance=7
 	definition._mcl_hardness=5
+	definition.groups={
+	  pickaxey=4
+	}
 end
 minetest.register_node("industrialtest:advanced_machine_block",definition)
 minetest.register_craft({
