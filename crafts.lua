@@ -76,7 +76,7 @@ if industrialtest.mclAvailable then
 	})
     industrialtest.api.registerCompressorRecipe({
     	output=industrialtest.elementKeys.ice,
-    	recipe=industrialtest.elementKeys.snowBlock
+    	recipe=industrialtest.elementKeys.snowblock
     })
 end
 

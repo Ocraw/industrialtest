@@ -450,7 +450,7 @@ if industrialtest.mclAvailable then
 	industrialtest.elementKeys.flint="mcl_core:flint"
 	industrialtest.elementKeys.snowball="mcl_throwing:snowball"
 	-- added snowblock > ice compressor recipe
-	industrialtest.elementKeys.snowblock="mcl_core:snowBlock"
+	industrialtest.elementKeys.snowblock="mcl_core:snowblock"
 	industrialtest.elementKeys.string="mcl_mobitems:string"
 	industrialtest.elementKeys.junglePlanks="mcl_core:junglewood"
 	industrialtest.elementKeys.wood="mcl_core:tree"
