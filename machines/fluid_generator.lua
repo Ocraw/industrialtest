@@ -279,7 +279,7 @@ minetest.register_abm({
 		end
 		if industrialtest.api.addPower(meta,powerToAdd)>0 then
 			local def=minetest.registered_nodes[node.name]
-			def._industrialtest_updateFormspec(meta)
+			def._industrialtest_updateFormspec(pos,meta)
 		end
 		if chargedSlot:get_count()>0 and meta:get_int("industrialtest.powerAmount")>0 then
 			if industrialtest.api.transferPowerToItem(meta,chargedSlot,industrialtest.api.lvPowerFlow)>0 then
