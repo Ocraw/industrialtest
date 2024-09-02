@@ -374,10 +374,16 @@ function industrialtest.internal.registerMachine(config)
 			end
 			return nil, nil, nil
 		end
-		definition._mcl_hoppers_on_try_push=function(pos, hop_pos, hop_inv, hop_list)
+		--[[definition._mcl_hoppers_on_try_push=function(pos, hop_pos, hop_inv, hop_list)
 			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
 			return inv, "src", mcl_util.select_stack(hop_inv, hop_list, inv, "src")
+		end]]
+		definition._on_hopper_in=function(pos, to_pos)
+			local meta = minetest.get_meta(pos)
+			local inv = meta:get_inventory()
+		    local slot_id = mcl_util.get_first_occupied_inventory_slot(inv, "main")
+			return mcl_util.move_item_container(pos, to_pos, nil, slot_id, "src")
 		end
 		definition._mcl_hoppers_on_after_push=function(pos)
 			minetest.get_node_timer(pos):start(industrialtest.updateDelay)
