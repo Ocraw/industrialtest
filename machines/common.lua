@@ -383,11 +383,15 @@ function industrialtest.internal.registerMachine(config)
 			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
 		    local slot_id = mcl_util.get_first_occupied_inventory_slot(inv, "main")
-			return mcl_util.move_item_container(pos, to_pos, nil, slot_id, "src")
+			--return mcl_util.move_item_container(pos, to_pos, nil, slot_id, "src")
+			if mcl_util.move_item_container(pos, to_pos, nil, slot_id, "src") then
+			  minetest.get_node_timer(to_pos):start(industrialtest.updateDelay)
+			end
+			return true
 		end
-		definition._mcl_hoppers_on_after_push=function(pos)
+		--[[definition._mcl_hoppers_on_after_push=function(pos)
 			minetest.get_node_timer(pos):start(industrialtest.updateDelay)
-		end
+		end]]
 	end
 	definition.groups._industrialtest_wrenchUnmountable=1
 	if config.requiresWrench then
