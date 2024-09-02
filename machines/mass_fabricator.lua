@@ -33,8 +33,8 @@ minetest.register_craft({
 	type="shaped",
 	output="industrialtest:mass_fabricator",
 	recipe={
-		{industrialtest.elementKeys.yellowDust,"industrialtest:advanced_circuit",industrialtest.elementKeys.yellowDust},
+		{industrialtest.elementKeys.yellowDust,"industrialtest:advanced_electronic_circuit",industrialtest.elementKeys.yellowDust},
 		{"industrialtest:advanced_machine_block","industrialtest:lapotron_crystal","industrialtest:advanced_machine_block"},
-		{industrialtest.elementKeys.yellowDust,"industrialtest:advanced_circuit",industrialtest.elementKeys.yellowDust}
+		{industrialtest.elementKeys.yellowDust,"industrialtest:advanced_electronic_circuit",industrialtest.elementKeys.yellowDust}
 	}
 })
