@@ -538,7 +538,8 @@ local function craftResultProxy(method,item)
 			src=srcAfter
 		}
 	elseif method=="industrialtest.mass_fabricating" then
-		if item:get_count()<34 then
+		local output=industrialtest.api.getMassFabricatorRecipeResult(item:get_name())
+		if not output or item:get_count()<output.count then
 			return {
 				item=ItemStack(),
 				time=0,
@@ -546,11 +547,11 @@ local function craftResultProxy(method,item)
 			}
 		end
 		local srcAfter=ItemStack(item:get_name())
-		srcAfter:set_count(item:get_count()-34)
+		srcAfter:set_count(item:get_count()-output.count)
 		return {
-			item=ItemStack("industrialtest:uu_matter"),
-			time=15,
-			src=srcAfter
+		  item=ItemStack(output.output),
+		  time=output.time,
+		  src=srcAfter
 		}
 	end
 	error("Unknown craft method passed to craftResultProxy")

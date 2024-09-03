@@ -31,6 +31,7 @@ transformer.onTimer=function(pos,elapsed,meta)
 	local def=minetest.registered_nodes[minetest.get_node(pos).name]
 	local afterFlowLower=false
 	local afterFlowUpper=false
+	local _
 	if powerAmount>=def._industrialtest_lowerFlow then
 		afterFlowLower,_=industrialtest.api.powerFlow(pos,{
 			[1]=true,

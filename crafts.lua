@@ -80,6 +80,13 @@ if industrialtest.mclAvailable then
     })
 end
 
+-- Mass Fabricator recipes
+industrialtest.api.registerMassFabricatorRecipe({
+  output="industrialtest:uu_matter",
+  recipe="industrialtest:scrap",
+  count=34
+})
+
 -- Geothermal Generator fuels
 industrialtest.api.registerGeothermalGeneratorFuel({
 	name=industrialtest.elementKeys.lavaSource,

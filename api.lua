@@ -21,6 +21,7 @@ industrialtest.api.maceratorRecipes={}
 industrialtest.api.compressorRecipes={}
 industrialtest.api.extractorRecipes={}
 industrialtest.api.cableFormerRecipes={}
+industrialtest.api.massFabricatorRecipes={}
 industrialtest.api.geothermalGeneratorFuels={}
 industrialtest.api.waterMillFuels={}
 industrialtest.api.rotaryMaceratorModifiers={}
@@ -776,7 +777,7 @@ industrialtest.api.registerCompressorRecipe=function(config)
 	}
 	industrialtest.api.compressorRecipes[definition.recipe]=definition
 end
--- \brief Returns macerator recipe result
+-- \brief Returns compressor recipe result
 -- \param recipe String ID of resulting conten
 -- \returns Table with following keys: output, recipe, time
 industrialtest.api.getCompressorRecipeResult=function(recipe)
@@ -805,6 +806,25 @@ end
 
 industrialtest.api.getCableFormerRecipeResult=function(recipe)
 	return industrialtest.api.cableFormerRecipes[recipe]
+end
+
+-- \brief Registers Mass Fabricator recipe
+-- \param config Table with following keys: <output>, <recipe>, [time(2)], [count(1)]
+-- \returns nil
+industrialtest.api.registerMassFabricatorRecipe=function(config)
+	local definition={
+		output=config.output or "",
+		recipe=config.recipe or "",
+		time=config.time or 15,
+		count=config.count or 1
+	}
+	industrialtest.api.massFabricatorRecipes[definition.recipe]=definition
+end
+-- \brief Returns Mass Fabricator recipe result
+-- \param recipe String ID of resulting conten
+-- \returns Table with following keys: output, recipe, time
+industrialtest.api.getMassFabricatorRecipeResult=function(recipe)
+	return industrialtest.api.massFabricatorRecipes[recipe]
 end
 
 -- \brief Registers fuel that can be used in geothermal generator
