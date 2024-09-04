@@ -809,7 +809,7 @@ industrialtest.api.getCableFormerRecipeResult=function(recipe)
 end
 
 -- \brief Registers Mass Fabricator recipe
--- \param config Table with following keys: <output>, <recipe>, [time(2)], [count(1)]
+-- \param config Table with following keys: <output>, <recipe>, [time(15)], [count(1)]
 -- \returns nil
 industrialtest.api.registerMassFabricatorRecipe=function(config)
 	local definition={
