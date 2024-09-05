@@ -57,7 +57,8 @@ ironFurnace.getFormspec=function(fuelPercent,srcPercent)
 			mcl_formspec.get_itemslot_bg(0.5,10.24,9,1),
 			"listring[current_player;main]",
 			"listring[context;src]",
-			"listring[context;dst]"
+			"listring[context;dst]",
+			"listring[context;fuel]"
 		}
 	end
 	return table.concat(formspec,"")
@@ -260,6 +261,9 @@ ironFurnace.onMetadataInventoryPut=function(pos,listname,index,stack)
 	minetest.get_node_timer(pos):start(industrialtest.updateDelay)
 end
 
+--vxlbr mcla compat
+local conttype
+
 local definition={
 	description=S("Iron Furnace"),
 	tiles={
@@ -293,9 +297,11 @@ if industrialtest.mtgAvailable then
 		return not (inv:get_list("src")[1]:get_count()>0 or inv:get_list("fuel")[1]:get_count()>0 or inv:get_list("dst")[1]:get_count()>0)
 	end
 elseif industrialtest.mclAvailable then
+  --vxlbr mcla compat
+    conttype = (industrialtest.game.id == "mineclone2" or industrialtest.game.id == "VoxeLibre") and 2 or 4
 	definition.groups={
 		pickaxey=1,
-		container=2
+		container=conttype
 	}
 	definition.after_dig_node=function(pos,oldnode,oldmeta)
 		industrialtest.internal.mclAfterDigNode(pos,oldmeta,{"src","fuel","dst"})
@@ -303,11 +309,16 @@ elseif industrialtest.mclAvailable then
 	definition.sounds=mcl_sounds.node_sound_metal_defaults()
 	definition._mcl_blast_resistance=3
 	definition._mcl_hardness=3.5
-	definition._mcl_hoppers_on_try_pull = mcl_furnaces.hoppers_on_try_pull
-	definition._mcl_hoppers_on_try_push = mcl_furnaces.hoppers_on_try_push
-	definition._mcl_hoppers_on_after_push = function(pos)
-		minetest.get_node_timer(pos):start(industrialtest.updateDelay)
-	end
+	if conttype == 2 then
+	  definition._mcl_hoppers_on_try_pull = mcl_furnaces.hoppers_on_try_pull
+	  definition._mcl_hoppers_on_try_push = mcl_furnaces.hoppers_on_try_push
+	  definition._mcl_hoppers_on_after_push = function(pos)
+		  minetest.get_node_timer(pos):start(industrialtest.updateDelay)
+	  end
+	elseif conttype == 4 then
+	  definition._on_hopper_in=mcl_furnaces.on_hopper_in
+	  definition._on_hopper_out=mcl_furnaces._on_hopper_out
+    end
 end
 minetest.register_node("industrialtest:iron_furnace",definition)
 definition=table.copy(definition)
@@ -328,7 +339,7 @@ if industrialtest.mclAvailable then
 	definition.groups={
 		not_in_creative_inventory=1,
 		pickaxey=1,
-		container=2
+		container=conttype
 	}
 	definition._doc_items_create_entry=false
 end
