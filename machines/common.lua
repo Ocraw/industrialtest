@@ -381,12 +381,15 @@ function industrialtest.internal.registerMachine(config)
 		end
 		definition._on_hopper_in=function(pos, to_pos)
 			if mcl_util.move_item_container(pos, to_pos, nil, -1, "src") then
+			  --TODO: this should timer:start only if it's a valid
+			  --  repice, to reduce calls.
 			  minetest.get_node_timer(to_pos):start(industrialtest.updateDelay)
 			  return true
 			end
 			return false
 		end
 		definition._mcl_hoppers_on_after_push=function(pos)
+		  --TODO: same as _on_hopper_in above.
 			minetest.get_node_timer(pos):start(industrialtest.updateDelay)
 		end
 	end

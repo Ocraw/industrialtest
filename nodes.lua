@@ -363,6 +363,19 @@ if not industrialtest.mods.mclRubber then
 					name=="mcl_core:podzol" or name=="mcl_core:podzol_snow" or
 					name=="mcl_core:dirt" or name=="mcl_core:mycelium" or name=="mcl_core:coarse_dirt"
 		end)
+		if industrialtest.game.id == "mineclonia" then
+			definition._on_bone_meal = function(itemstack, placer, pointed_thing, pos, node)
+				if math.random() > 0.45 then return end --sapling has a 45% chance to grow when bone mealing
+				local meta=minetest.get_meta(pointed_thing.under)
+				local stage=meta:get_int("stage") or 0
+				stage=stage+1
+				if stage>=3 then
+						industrialtest.internal.makeRubberTree(pointed_thing.under)
+				else
+					meta:set_int("stage",stage)
+				end
+			end
+		end
 		minetest.register_abm({
 			label="Rubber sapling growing",
 			nodenames={"industrialtest:rubber_sapling"},
@@ -388,23 +401,25 @@ if not industrialtest.mods.mclRubber then
 				end
 			end
 		})
-		mcl_dye.register_on_bone_meal_apply(function(pointed)
-			local node=minetest.get_node(pointed.under)
-			if node.name~="industrialtest:rubber_sapling" then
-				return
-			end
-			if industrialtest.random:next(1,100)>45 then
-				return
-			end
-			local meta=minetest.get_meta(pointed.under)
-			local stage=meta:get_int("stage") or 0
-			stage=stage+1
-			if stage>=3 then
-					industrialtest.internal.makeRubberTree(pointed.under)
-			else
-				meta:set_int("stage",stage)
-			end
-		end)
+		if industrialtest.game.id == "mineclone2" or industrialtest.game.id == "VoxeLibre" then
+			mcl_dye.register_on_bone_meal_apply(function(pointed)
+				local node=minetest.get_node(pointed.under)
+				if node.name~="industrialtest:rubber_sapling" then
+					return
+				end
+				if industrialtest.random:next(1,100)>45 then
+					return
+				end
+				local meta=minetest.get_meta(pointed.under)
+				local stage=meta:get_int("stage") or 0
+				stage=stage+1
+				if stage>=3 then
+						industrialtest.internal.makeRubberTree(pointed.under)
+				else
+					meta:set_int("stage",stage)
+				end
+			end)
+		end
 	end
 	definition.groups.attached_node=1
 	definition.groups.dig_immediate=3
