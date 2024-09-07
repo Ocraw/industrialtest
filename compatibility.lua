@@ -363,23 +363,50 @@ if industrialtest.mclAvailable then
 				hoey={speed=config.speed,level=config.level,uses=config.uses}
 			}
 		})
-		mcl_armor.register_set({
-			name=material,
-			description=materialDisplayName,
-			durability=config.uses,
-			points=config.armorPoints,
-			craft_material="industrialtest:"..materialItem,
-			cook_material=config.armorCookMaterial,
-			sound_equip=config.armorEquipSound,
-			sound_unequip=config.armorUnequipSound,
-			enchantability=config.enchantability,
-			textures={
-				head="industrialtest_mcl_"..material.."_helmet.png",
-				torso="industrialtest_mcl_"..material.."_chestplate.png",
-				legs="industrialtest_mcl_"..material.."_leggings.png",
-				feet="industrialtest_mcl_"..material.."_boots.png"
-			}
-		})
+		if industrialtest.game.id == "mineclonia" then
+			mcl_armor.register_set({
+				name=material,
+				--description=materialDisplayName,
+				descriptions={
+					head=S(materialDisplayName.." Helmet"),
+					torso=S(materialDisplayName.." Chestplate"),
+					legs=S(materialDisplayName.." Leggings"),
+					feet=S(materialDisplayName.." Boots"),
+				},
+				durability=config.uses,
+				points=config.armorPoints,
+				craft_material="industrialtest:"..materialItem,
+				cook_material=config.armorCookMaterial,
+				sound_equip=config.armorEquipSound,
+				sound_unequip=config.armorUnequipSound,
+				enchantability=config.enchantability,
+				textures={
+					head="industrialtest_mcl_"..material.."_helmet.png",
+					torso="industrialtest_mcl_"..material.."_chestplate.png",
+					legs="industrialtest_mcl_"..material.."_leggings.png",
+					feet="industrialtest_mcl_"..material.."_boots.png"
+				}
+			})
+		end
+		if industrialtest.game.id == "mineclone2" or industrialtest.game.id == "VoxeLibre" then
+			mcl_armor.register_set({
+				name=material,
+				description=materialDisplayName,
+				durability=config.uses,
+				points=config.armorPoints,
+				craft_material="industrialtest:"..materialItem,
+				cook_material=config.armorCookMaterial,
+				sound_equip=config.armorEquipSound,
+				sound_unequip=config.armorUnequipSound,
+				enchantability=config.enchantability,
+				textures={
+					head="industrialtest_mcl_"..material.."_helmet.png",
+					torso="industrialtest_mcl_"..material.."_chestplate.png",
+					legs="industrialtest_mcl_"..material.."_leggings.png",
+					feet="industrialtest_mcl_"..material.."_boots.png"
+				}
+			})
+		end
 		minetest.register_craft({
 			type="shaped",
 			output="industrialtest:"..material.."_pickaxe",
