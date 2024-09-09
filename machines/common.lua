@@ -353,6 +353,7 @@ function industrialtest.internal.registerMachine(config)
 			return true
 		end
 	elseif industrialtest.mclAvailable then
+	    --local conttype = industrialtest.game.id == "mineclonia" and 4 or 2
 		definition.after_dig_node=function(pos,oldnode,oldmeta)
 			industrialtest.internal.mclAfterDigNode(pos,oldmeta,config.storageSlots)
 		end
@@ -374,6 +375,9 @@ function industrialtest.internal.registerMachine(config)
 			end
 			return nil, nil, nil
 		end
+		definition._on_hopper_out=function(pos, hpos)
+		  mcl_util.move_item_container(pos, hpos, "dst")
+		end
 		definition._mcl_hoppers_on_try_push=function(pos, hop_pos, hop_inv, hop_list)
 			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
@@ -383,7 +387,7 @@ function industrialtest.internal.registerMachine(config)
 			if mcl_util.move_item_container(pos, to_pos, nil, -1, "src") then
 			  --TODO: this should timer:start only if it's a valid
 			  --  repice, to reduce calls.
-			  minetest.get_node_timer(to_pos):start(industrialtest.updateDelay)
+			  --minetest.get_node_timer(to_pos):start(industrialtest.updateDelay)
 			  return true
 			end
 			return false

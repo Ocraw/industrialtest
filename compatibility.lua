@@ -503,7 +503,7 @@ if industrialtest.mclAvailable then
 	--FIXME slabs different between vxlbr mcla
 	-- also it's supposed to be a pressure plate, might wait for mcl to
 	-- transition from mesecons.
-	industrialtest.elementKeys.stoneSlab=(industrialtest.game.id == "mineclone2" or industrialtest.game.id == "VoxeLibre") and "mcl_stairs:slab_stone" or "mcl_stairs:slab_stone_rough"
+	industrialtest.elementKeys.stoneSlab=industrialtest.game.id == "mineclonia" and "mcl_stairs:slab_stone_rough" or "mcl_stairs:slab_stone"
 	industrialtest.elementKeys.cobble="mcl_core:cobble"
 	industrialtest.elementKeys.mossCobble="mcl_core:mossycobble"
 	industrialtest.elementKeys.sand="mcl_core:sand"

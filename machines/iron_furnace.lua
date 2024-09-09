@@ -298,7 +298,7 @@ if industrialtest.mtgAvailable then
 	end
 elseif industrialtest.mclAvailable then
   --vxlbr mcla compat
-    conttype = (industrialtest.game.id == "mineclone2" or industrialtest.game.id == "VoxeLibre") and 2 or 4
+    conttype = industrialtest.game.id == "mineclonia" and 4 or 2
 	definition.groups={
 		pickaxey=1,
 		container=conttype
