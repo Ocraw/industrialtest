@@ -81,17 +81,25 @@ end
 
 local function addYVelocityClamped(player,vel,max)
 	local playerVel=player:get_velocity()
+	--minetest.log(""..playerVel.y)
 	if playerVel.y+vel>max then
 		player:add_velocity(vector.new(0,math.max(max-playerVel.y,0),0))
+	-- XXX
+	elseif playerVel.y < -10 then
+		player:add_velocity(vector.new(0,vel+1,0))
+	--
 	else
 		player:add_velocity(vector.new(0,vel,0))
 	end
 end
-
+-- FIXME: Movements feel wonky either on server or sp, we probably need to normalize
+-- how fast (or slow) the server responds
+-- Also is probably better a proportional increase of vel.y, to contrast falling speed (-vel.y)
 local function onGlobalStep(player,inv,itemstack,index,def)
 	if def.groups and def.groups._industrialtest_jetpack then
 		if def._industrialtest_tryFly(itemstack) then
-			addYVelocityClamped(player,1,10)
+			--addYVelocityClamped(player,1,10)
+			addYVelocityClamped(player,1.6,8)
 			inv:set_stack("armor",index,itemstack)
 		end
 		return true
