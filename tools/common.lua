@@ -37,7 +37,7 @@ local function beforeUse(user,itemstack,canDig)
 end
 
 minetest.register_on_punchnode(function(pos,node,user,pointed)
-	if not user or not node.def then
+	if not user or not minetest.registered_nodes[node.name] then
 		return
 	end
 	local itemstack=user:get_wielded_item()
