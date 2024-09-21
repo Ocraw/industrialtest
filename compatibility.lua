@@ -160,9 +160,9 @@ if industrialtest.mclAvailable then
 			type="shaped",
 			output="industrialtest:raw_"..name.."_block",
 			recipe={
-				{"industrialtest:raw"..name,"industrialtest:raw"..name,"industrialtest:raw"..name},
-				{"industrialtest:raw"..name,"industrialtest:raw"..name,"industrialtest:raw"..name},
-				{"industrialtest:raw"..name,"industrialtest:raw"..name,"industrialtest:raw"..name}
+				{"industrialtest:raw_"..name,"industrialtest:raw_"..name,"industrialtest:raw_"..name},
+				{"industrialtest:raw_"..name,"industrialtest:raw_"..name,"industrialtest:raw_"..name},
+				{"industrialtest:raw_"..name,"industrialtest:raw_"..name,"industrialtest:raw_"..name}
 			}
 		})
 		minetest.register_craft({
@@ -172,15 +172,6 @@ if industrialtest.mclAvailable then
 				{"industrialtest:"..name.."_ingot","industrialtest:"..name.."_ingot","industrialtest:"..name.."_ingot"},
 				{"industrialtest:"..name.."_ingot","industrialtest:"..name.."_ingot","industrialtest:"..name.."_ingot"},
 				{"industrialtest:"..name.."_ingot","industrialtest:"..name.."_ingot","industrialtest:"..name.."_ingot"}
-			}
-		})
-		minetest.register_craft({
-			type="shaped",
-			output="industrialtest:raw_"..name.."_block",
-			recipe={
-				{"industrialtest:raw_"..name,"industrialtest:raw_"..name,"industrialtest:raw_"..name},
-				{"industrialtest:raw_"..name,"industrialtest:raw_"..name,"industrialtest:raw_"..name},
-				{"industrialtest:raw_"..name,"industrialtest:raw_"..name,"industrialtest:raw_"..name}
 			}
 		})
 		minetest.register_craft({
@@ -527,7 +518,7 @@ if industrialtest.mclAvailable then
 	industrialtest.elementKeys.stoneWithCopper="mcl_copper:stone_with_copper"
 	industrialtest.elementKeys.leadLump="industrialtest:raw_lead"
 	industrialtest.elementKeys.ironPickaxe="mcl_tools:pick_iron"
-	industrialtest.elementKeys.ironHelmet="mcl_tools:helmet_iron"
+	industrialtest.elementKeys.ironHelmet="mcl_armor:helmet_iron"
 	industrialtest.elementKeys.ironBoots="mcl_armor:boots_iron"
 	industrialtest.elementKeys.lavaSource="mcl_core:lava_source"
 	industrialtest.elementKeys.waterSource="mcl_core:water_source"
